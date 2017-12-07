@@ -1,0 +1,17 @@
+<% sales.each do |c| %>
+<% p = SalesPresenter.new(c,self) %>
+<tr>
+	<td><%= p.full_name %></td>
+	<td><%= p.full_name_kana %></td>
+	<td class="email"><%= p.email %></td>
+	<td class="date"><%= p.birthday %></td>
+	<td><%= p.gender %></td>
+	<td class="action">
+		<%= link_to 'more', [:cost_c ] %>
+		<%= link_to 'update', [:edit, :cost, c]%> |
+		<%= link_to 'delete', [:cost, c],method: :delete,
+		data: {confirm: 'delete confimation'}%>
+	</td>
+</tr>
+<% end %>
+

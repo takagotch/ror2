@@ -1,4 +1,6 @@
 class ModelPresenter
+include HtmlBuilder
+
   attr_render :object, :view_context
   delegate :raw, to: :view_context
 
