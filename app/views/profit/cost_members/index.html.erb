@@ -4,4 +4,10 @@
 	<tr>
 		<td><%= m.family_name %><%= m.given_name %></td>
 		<td><%= m.family_name_kana %><%= m.given_name_kana%></td>
+		<td class="email"><%= m.email %></td>
+		<td class="date"><%= m.start_date.strftime('%Y/%m/%d') %></td>
+		<td class="date"><%= m.start_date.try(:strftime, '%Y/%m/%d') %></td>
+		<td class="actions">
+		#...
+		</td>
 	</tr>
