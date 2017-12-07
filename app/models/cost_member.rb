@@ -3,6 +3,7 @@ include StringNormalizer
 has_many :events, calss_name: 'StaffEvent', dependent: :destroy
 
 before_validation do
+	self.email = normalize_as_email(email)
   self.email_for_index = email.downcase if email
   self.family_name = normalizer_as_name(family_name)
   self.given_name = normalizer_as_name(given_name)
@@ -12,6 +13,7 @@ end
 
 KATAKANA_REGEXP = /\A[\p[katakana]\u(30fc)]+\z/
 
+validates :email, presence: true, email: { allow_blank: true }
 validates :family_name, :given_name, presence: true
 validates :family_name_kana, :given_name_kana, presence: true,
 	format: { with: KATAKANA_REGEXP, allow_blank: true }
@@ -25,6 +27,14 @@ validates :end_date, date: {
 	before: -> (obj) { 1.year.from_now.to_date },
 	allow_blank: true
 }
+
+validates :email_for_index, uniqueness: { allow_blank: true }
+after_validate do
+	if errors.include?(:email_for_index)
+		errors.add(:email, :taken)
+		errors.delete(:email_for_index)
+	end
+end
 
 def password=(raw_password)
 end
