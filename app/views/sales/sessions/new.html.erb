@@ -10,6 +10,12 @@
 			<%= f.text_field :email %>
 		</div>
 		<div>
+			<%= f.check_box :remeber_me %>
+			<%= f.label :remember_me, 'auto Login next time'%>
+		</div>
+
+
+		<div>
 			<%= f.label :email, 'Pass'%>
 			<%= f.pasword_field :password %>
 		</div>
