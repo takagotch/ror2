@@ -1,0 +1,26 @@
+<% @title = 'Update Pass' %>
+<h1><%= @title %></h1>
+
+<div id="generic-form">
+	<%= form_for @change_password_form, url: :staff_password,
+method: :patch do |f| %>
+<div>
+<%= f.label :current_password, "Pass now" %>
+<%= f.password_field :current_password, size: 32, required: true %>
+</div>
+<div>
+	<%= f.label :new_password, "New Pass" %>
+	<%= f.password_field :new_password, size: 32, required: true %>
+</div>
+<div>
+	<%= f.label :new_password_confirmation, "New Pass again" %>
+	<%= f.password_field :new_password_confiramtion, size: 32,
+required: true %>
+</div>
+<div class="buttons">
+	<%= f.submit 'Update' %>
+	<%= link_to 'Cancel', :staff_account %>
+</div>
+<% end %>
+</div>
+

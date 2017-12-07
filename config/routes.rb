@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
   config = Rails.application.config.ror2
+
   constraints host:config[:cost][:path]do
     namespace :cost,path:config[:cost][:path]do
       root 'top#index'
       get  'login' => 'sessions#new,as::login'
-      resource:session,only:[:create,:destroy]
-      resource:account,except:[:new,:create]
-      resource:password,only[:show,:edit,:update]
-      resources:
+      resource :session,only:[:create,:destroy]
+      resource :account,except:[:new,:create]
+      resource :password,only[:show,:edit,:update]
     end
   end
 
@@ -15,11 +15,11 @@ Rails.application.routes.draw do
     namespace :profit,path:config[:profit][:path]do
       root 'top#index'
       get  'login' => 'sessions#new', as:login
-      resource:session, only:[:create,:destroy]
-      resources:cost_members do
+      resource    :session, only:[:create,:destroy]
+      resources   :cost_members do
         resources :cost_events,only:[:index]
       end
-      resources :cost_events,only:[:index]
+      resources   :cost_events,only:[:index]
     end
   end
 
