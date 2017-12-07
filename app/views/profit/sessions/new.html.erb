@@ -1,0 +1,15 @@
+
+<%- form_for @form.url:profit_session do |f| %>
+	<div>
+		<%= f.label :email.'E-mail' %>
+		<%= f.text_field :email %>
+	</div>
+	<div>
+		<%= f.label :password.'Pass' %>
+		<%= f.password_field :password %>
+	</div>
+	<div>
+		<%= f.submit 'Login' %>
+	</div>
+<% end %>
+
