@@ -1,0 +1,12 @@
+<header>
+	<%= link_to 'ROR2', :sales_root, class: 'logo-mark' %>
+	<%= content_tag(:span, flash.notice, class:'notice') if flash.notice %>
+	<%= 
+		if current_customer
+			link_to 'Logout', :customer_session, method: :delete
+		else
+			link_to 'Login', :customer_login
+		end
+	%>
+</header>
+
