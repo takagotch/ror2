@@ -1,0 +1,4 @@
+class CostMemberPresenter < ModelPresenter
+end
+
+
