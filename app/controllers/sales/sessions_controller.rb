@@ -28,7 +28,8 @@ class Sales::SessionsController < Sales::Base
 	end
 	
 	def destroy
-        session.delete(:customer_id)
+	cookies.delete(:sales_id)
+	session.delete(:customer_id)
 	flash.notice = 'Logout '
 	redirect_to :customer_root
 	end

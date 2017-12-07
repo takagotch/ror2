@@ -3,10 +3,14 @@ class Sales::Base < ApplicatoinController
 
 	private
 	def current_customer
-	if session[:sales_id]
-		@current_customer ||=
-			Sales.find_by(id:session[:sales_id])
-	end
+	#if session[:sales_id]
+	#	@current_customer ||=
+	#		Sales.find_by(id:session[:sales_id])
+	#end
+		#Cookies 
+		if sales_id = cookies.signed[:sales_id]||session[sales_id]
+			@current_sales ||= Sales.find_by(id:sales_id)
+		end
 	end
 
 	helper_method :current_sales
