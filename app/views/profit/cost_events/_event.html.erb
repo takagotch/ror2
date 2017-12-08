@@ -1,0 +1,14 @@
+<tr>
+	<%= unless @cost_member %>
+	<td>
+		<%= link_to(event.member.family_name + event.member.given_name,
+				   [:profit, events.member, :staff_events ])%>
+	</td>
+	<% end %>
+
+	<td><%= event.description %></td>
+	<td class="date">
+		<%= event.ocurred_at.strftime('%Y/%m/%d %H:%M:%S') %>
+	</td>
+</tr>
+
