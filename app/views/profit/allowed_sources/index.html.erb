@@ -5,20 +5,32 @@
 #<div class="table-wrapper">
 	<div>
 		<%= render 'new_allowed_source' %>
+		<%= form_for:form, url: :delete_profit_allowed_sources,
+	method: :delete do |f| %>
 	</div>
 <table class="listing">
 	<tr>
+		<th>Delete</th>
 		<th>IP addr</th>
 		<th>Created Date</th>
 	</tr>
-	<% @allowed_sources.each do |s| %>
+	<% @allowed_sources.each_with_index do |s,index| %>
 		<% p = AllowedSourcePresenter.new(s, self)%>
+		<%= f.fields_for :allowed_sources, s, index: index do |ff| %>
+			<%= ff.hidden_field :id %>
 		<tr>
+			<td class="actions"><%= ff.check_box :destroy %></td>
 			<td class="ip"><%= p.ip_address %></td>
 			<td class="date"><%= p.created_at %></td>
 		</tr>
 	<% end %>
+	<% end %>
 </table>
+<div class="buttons">
+	<%= f.submit 'Delete checked Ip addr',
+		data:{confirmaed: 'confirm to delete'}%>
+</div>
+<% end %>
 </div>
 
 
