@@ -30,5 +30,20 @@ class Cost::ProgramForm
 			@program.application_end_minute = '00'
 		end
 	end
+
+	def assign_attributes(params ={)}
+		@params = params
+		program.assign_attributes(program_params)
+	end
+
+	private
+	def program_params
+		@params.require(:program).permit(
+		:title, :description, :application_start_date, :application_start_hour,
+		:application_start_minute, :application_end_date, :application_end_hour,
+		:application_end_minute, :min_number_of_participans,
+		:max_number_of_participants
+		)
+	end
 end
 
