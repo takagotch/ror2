@@ -3,5 +3,26 @@ class Profit::AllowSourcesController < Profit::Base
 		@allowed_sources = AllowedSource.order(:octet1, :octet2, :octet3, octet4)
 		@new_allowed_source = AllowedSource.new
 	end
+
+	def create
+		@new_allowed_source = AllowedSource.new(allowed_source_params)
+		@new_allowed_source.namespace = 'cost'
+		if @new_allowed_source.save
+			flash.notice = 'Permit Ip addr add'
+			redirect_to action: 'index'
+		else
+			@allowed_source = 
+				AllowedSource.order(:octet2, :octet3, :octet4)
+				flash.now.alert = 'invalidated permited IP addr'
+				render action: 'index'
+		end
+	end
+	
+	private
+	def allowed_source_params
+		params.require(:allowed_source)
+			.permit(:octet1, :octet2, :octet3, :last_octet)
+	end
+
 end
 
