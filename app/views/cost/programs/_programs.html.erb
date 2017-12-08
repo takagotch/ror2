@@ -1,0 +1,15 @@
+<%= p = ProgramPresenter.new(program, self) %>
+<tr>
+	<td><%= p.title %></td>
+	<td class="date"><%= p.application_start_time %></td>
+	<td class="numeric"><%= p.application_end_time %></td>
+	<td class="numeric"><%= p.min_number_of_participants %></td>
+	<td class="numeric"><%= p.number_of_applicants %></td>
+	<td class="action">
+		<%= link_to 'more',    [:cost, program] %>
+		<%= link_to 'editing', [:edit, :cost, program] %>
+		<%= link_to 'delete',  [:edit, program], method: :delete,
+			data: {confirm: 'confirm to delete'}%>
+	</td>
+</tr>
+

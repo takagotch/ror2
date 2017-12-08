@@ -1,0 +1,31 @@
+<% @title = 'Program Management'%>
+<h1><%= @title %></h1>
+
+<div class="table-wrapper">
+	<div class="links">
+		<%= link_to 'New register', :new_cost_programs %>
+	</div>
+
+	<%= paginate @programs %>
+
+	<table class="listing">
+		<tr>
+			<th>Title</th>
+			<th>start_date</th>
+			<th>end_date</th>
+			<th>min_joiner</th>
+			<th>max_joiner</th>
+			<th>amount_register</th>
+			<th>actions</th>
+		</tr>
+		<%= render partial: 'program', collection: @programs %>
+	</table>
+
+	<%= paginate @programs %>
+
+	<div class="links">
+		<%= link_to 'New Register', :new_cost_program %>
+	</div>
+</div>
+
+
