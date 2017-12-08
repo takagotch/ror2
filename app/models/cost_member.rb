@@ -44,5 +44,14 @@ end
 def password=(raw_password)
 end
 
+def active?
+	!suspended? && start_date <= Date.today &&
+		(end_date.nil? || end_date > Date.today)
+end
+
+def deletable?
+	programs.empty?
+end
+
 end
 
