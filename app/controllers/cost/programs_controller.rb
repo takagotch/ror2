@@ -10,5 +10,13 @@ class Cost::ProgramsController < Cost::Base
 		#@program = Program.find(params[:id])
 		@program = Program.listing.find(params[:id])
 	end
+
+	def new
+		@program_for = Cost::ProgramForm.new
+	end
+
+	def edit
+		@program_form = Cost::ProgramFrom.new(Program.find(params[:id]))
+	end
 end
 
