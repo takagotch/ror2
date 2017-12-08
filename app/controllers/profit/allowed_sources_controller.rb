@@ -18,6 +18,13 @@ class Profit::AllowSourcesController < Profit::Base
 		end
 	end
 	
+	def delete
+		if Profit::AllowedSourcesDeleter.new.delete(params[:form])
+			flash.notice = 'delete permited Ip addr'
+		end
+		redirect_to action: 'index'
+	end
+
 	private
 	def allowed_source_params
 		params.require(:allowed_source)
