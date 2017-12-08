@@ -1,0 +1,13 @@
+<% @title = 'New Register'%>
+<h1><%= @title %></h1>
+
+<div id="generic-form">
+	<%= form_for @program_form, as:'form', url: :staff_programs do |f| %>
+		<%= render 'form'm f: f %>
+		<div class="buttons">
+			<%= f.sucmit 'Register' %>
+			<%= link_to 'Cancel', :cost_programs %>
+		</div>
+	<% end %>
+</div>
+

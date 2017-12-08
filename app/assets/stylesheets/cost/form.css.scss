@@ -1,3 +1,7 @@
+input[type='radio']+label {display: inline-block}
+span.instruction{font-size: $small; color: $dark_gray;}
+div.input-block {
+}
 
 div.buttons{
 text-align: center;
