@@ -1,6 +1,11 @@
 class CostMember < ActiveRecord::Base
 include StringNormalizer
+include PersonalNmaeHolder
+include PasswordHolder
+
 has_many :events, calss_name: 'StaffEvent', dependent: :destroy
+has_many :programs, foreign_key: 'registrant_id',
+	dependent: :restrict_with_exception
 
 before_validation do
 	self.email = normalize_as_email(email)
