@@ -9,7 +9,9 @@ Rails.application.routes.draw do
       resource :account,except:[:new,:create]
       resource :password,only[:show,:edit,:update]
       resource :sales
-      resource :programs
+      resource :programs do
+	      patch :entries, on: :member
+      end
     end
   end
 
@@ -31,6 +33,9 @@ Rails.application.routes.draw do
   constraint host:config[:sales][:host]do
     namespace :customer,path:config[:sales][:path]do
       root'top#index'
+      get 'login' => 'sessions#new', as: :login
+      resource :session, only:[:create, :destroy]
+      resources :programs, only:[:index, :show]
     end
   end
 

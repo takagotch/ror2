@@ -1,0 +1,17 @@
+<%= f.fields_for :program, f.object.program do |ff| %>
+	<%= markup do |m|
+		p = ProgramFormPresenter.new(ff, self) 
+		m << p.notes
+		p.with_options(required: true) do |q|
+		m << q.text_field_block(:title, 'Title', maxlength: 32)
+		m << q.datetime_field_block(:application_start, 'start_date',
+			      instruction: 'start_date 90days')
+		end
+		p.with_oprions(size: 6) do |q|
+			m << q.number_field_block(:min_number_of_participants, 'Minjoiner' min: 1000)
+			m << q.number_field_block(:max_number_of_participants, 'Maxjoiner' max: 1000)
+		end
+		m << p.desctiption
+		end %>
+	<% end %>
+

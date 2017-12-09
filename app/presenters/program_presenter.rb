@@ -23,7 +23,9 @@ class ProgramPresenter < ModelPresenter
 	end
 
 	def number_of_applicats
-		number_with_delimiter(object.applicants.count)
+		#number_with_delimiter(object.applicants.count)
+		#number_with_delimiter(object.entries.count)
+		number_with_delimiter(object.number_of_applicants)
 	end
 
 	def registrant
