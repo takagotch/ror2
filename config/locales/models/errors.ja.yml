@@ -1,0 +1,6 @@
+ja:
+        activerecord:
+                errors:
+                        messages:
+                                invalid: invalid
+                                blank: blank.

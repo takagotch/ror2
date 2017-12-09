@@ -1,0 +1,25 @@
+ja:
+        activerecord:
+                attributes:
+                        email: E-mail
+                        family_name: family_name
+                        given_name: given_name
+                        family_name_kana: family_name_kana
+                        given_name_kana: given_name_kana
+                        start_date: start_date
+                        end_date: end_date
+         errors:
+               models:
+                     staff_meber:
+                          attributes:
+                              email:
+                              token: token 
+                                  start_date:
+                                   after_or_equal_to: 20000101-
+                                   before: before
+                              end_date:   after
+                                   after_or_equal_to: 20000101-
+                                   before: before
+                                   after: after
+
+
