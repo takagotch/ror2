@@ -1,0 +1,13 @@
+<table class="listing">
+	<tr>
+		<% unless @cost_member %><th>Name</th><% end %>
+		<th>Category</th>
+		<th>Date</th>
+	</tr>
+	<% @events.each do |event| %>
+		<%= CostEventPresenter.new(event, self).table_raw %>
+	<% end %>
+	<% if @events.empty? %>
+	<% end %>
+</table>
+
