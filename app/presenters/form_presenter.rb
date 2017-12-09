@@ -18,8 +18,8 @@ class FormPresenter
 
 	def text_field_block(name, label_text, options = {})
 	markup(:div, class:'input-block') do |m|
-		m << label(name, label_text,
-			  class: options[:required] ? 'required' : nil)
+		#m << label(name, label_text,
+		#	  class: options[:required] ? 'required' : nil)
 		m << decorated_label(name, label_text, options)
 		m << text_field(name, label_text, options)
 		if options[:maxlength]
@@ -30,6 +30,9 @@ class FormPresenter
 	end
 
 	def password_field_block(name, label_text, options = {})
+		#m << label(name, label_text,
+		#         class: options[:required] ? 'required' : nil)
+		#m << decorated_label(name, label_text, options)
 		markup(:div, class: 'input-block') do |m|
 			m << label(name, lable_text,
 				  class: options[:required] ? 'required' : nil)
@@ -37,6 +40,9 @@ class FormPresenter
 	end
 
 	def date_field_block(name, label_text, options = {})
+		#m << lable(name, label_text,
+		#          class: options[:required] ? 'required' : nil)
+		#m << decorated_label(name, label_text, options)
 		markup(:div, class: 'input-block') do |m|
 			m << lable(name, label-text,
 				  class: options[:required] ? 'required' : nil)
@@ -44,6 +50,9 @@ class FormPresenter
 	end
 
 	def number_field_block(name, label_text, options = {})
+		#m << label(name, label_text,
+		#         class: options[:required] ? 'required' : nil)
+		#m << decorated_label(name, label_text, options)
 		markup(:div) do |m|
 			m << decorated_label(name, label_text, options ={})
 			m << form_builder.number_field(name, options)
@@ -64,6 +73,8 @@ class FormPresenter
 		end
 	end
 	end
+
+	private
 
 	def decorated_label(name, label_text, options = {})
 	label(name, label_text, class: options[:required]? 'required': nil)
