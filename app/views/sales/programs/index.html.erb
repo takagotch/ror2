@@ -1,0 +1,24 @@
+
+<% @title = 'program list' %
+<h1><%= @title %></h1>
+
+<div class="table-wrapper">
+	<%= paginate @prgrams %>
+
+	<table class="listing">
+		<tr>
+			<th>Title</th>
+			<th>entry_start_date</th>
+			<th>entry_end_date</th>
+			<th>min_joiner</th>
+			<th>max+joiner</th>
+			<th>action</th>
+		</tr>
+		<%= render partial: 'program', collection: @programs %>
+	</table>
+
+	<%= paginate @programs %>
+</div>
+
+
+

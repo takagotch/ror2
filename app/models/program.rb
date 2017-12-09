@@ -45,6 +45,15 @@ class Program < ActiveRecord::Base
 			.include(:registrant)
 	}
 
+	scope :published, -> {
+		where('application_start_time <= ?'m Time.current)
+			.order(application_start_time: :desc)
+	}
+
+	def deleteable?
+		entries.empty?
+	end
+
 	private
 	def set_application_start_time
 		return if application_start_date.blank?
@@ -72,5 +81,6 @@ class Program < ActiveRecord::Base
 			self.application_end_time = nil
 		end
 	end
+        
 end
 
