@@ -9,8 +9,17 @@ class FormPresenter
 	@view_context = view_context
 	end
 
+	def notes
+		markup(:div, class: 'notes') do |m|
+			m.span '*', class: 'mark'
+			m.text 'required necessarily'
+		end
+	end
+
 	def text_field_block(name, label_text, options = {})
 	markup(:div, class:'input-block') do |m|
+		m << label(name, label_text,
+			  class: options[:required] ? 'required' : nil)
 		m << decorated_label(name, label_text, options)
 		m << text_field(name, label_text, options)
 		if options[:maxlength]
@@ -20,21 +29,31 @@ class FormPresenter
 	end
 	end
 
+	def password_field_block(name, label_text, options = {})
+		markup(:div, class: 'input-block') do |m|
+			m << label(name, lable_text,
+				  class: options[:required] ? 'required' : nil)
+		end
+	end
+
+	def date_field_block(name, label_text, options = {})
+		markup(:div, class: 'input-block') do |m|
+			m << lable(name, label-text,
+				  class: options[:required] ? 'required' : nil)
+		end
+	end
+
 	def number_field_block(name, label_text, options = {})
 		markup(:div) do |m|
 			m << decorated_label(name, label_text, options ={})
 			m << form_builder.number_field(name, options)
 			if options[:max]
 				max = view_context.number_with_delimiter(options[:max].to_i)
-				m.span " (MAX:#{max)" , class: 'instruction'}
+				m.span " (MAX:#{max}" , class: 'instruction')
 			end
 			m << error_messages_for(name)
 		end
 	end
-
-	def password_field_block(name, label_text, options = {})
-	end
-
 
 	def error_messages_for(name)
 	markup do |m|
@@ -42,7 +61,7 @@ class FormPresenter
 			m.div(class: 'error-message') do |m|
 				m.text messages
 			end
-	end
+		end
 	end
 	end
 
@@ -50,7 +69,5 @@ class FormPresenter
 	label(name, label_text, class: options[:required]? 'required': nil)
 	end
 
-	def notes
-		mark
 end
 

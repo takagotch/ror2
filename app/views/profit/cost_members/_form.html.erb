@@ -32,6 +32,14 @@
 
 <%= markup do |m|
 	p = CostMemberFormPreenter.new(f,self)
+	<%= p.notes %>
+	<%= p.text_field_block(:email, 'E-mail', size: 32, required: true) %>
+	<%= p.password_field_block(:password, 'Pass', size: 32, required: true)%>
+	<%= p.full_name_block(:family_name, :given_name, 'Name', required: true)%>
+	<%= p.date_field_block(:start_date, 'start_date', required: true) %>
+	<%= p.date_field_block(:end_date, 'end_date') %>
+	<%= p.check_boxes %>
+
 	m << p.notes
 	p.with_options(required: true) do |q|
 		m << q.text_field_block(:password, 'Pass', size: 32)
