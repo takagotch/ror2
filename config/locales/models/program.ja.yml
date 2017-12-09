@@ -1,0 +1,26 @@
+
+ja:
+        activerecord:
+                attributes:
+                        program:
+                                title: Title
+                                application_start_time: Start_time
+                                application_start_date: Start_date
+                                application_end_time: End_time
+                                application_end_date: End_date
+                                min_number_of_participants: Min_joiner
+                                max_number_of_participants: Max_joiner
+        errors:
+                models:
+                         program:
+                                attributes:
+                                        application_start_time:
+                                                after_or_equal_to: 2000-
+                                                before: 1-
+                                        application_end_time:
+                                                after_or_equal_to: 2000-
+                                                before: 90-
+                                                after: backforward
+                                        max_number_of_participants:
+                                                less_than_min_number: min
+                                              
