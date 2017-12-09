@@ -1,0 +1,43 @@
+<% @title = 'SalesManagemanet'%>
+<h1><%= @title %></h1>
+
+<div class="table-wrapper">
+<div class="links">
+<%= link_to 'New register', :new_cost_sales %>
+</div>
+
+<%= paginate @sales %>
+
+<table class="listing">
+<tr>
+<th>Name</th>
+<th>kana</th>
+<th>E-mail</th>
+<th>birthday</th>
+<th>gender</th>
+<th>actions</th>
+</tr>
+<% @salws.each do |c| %>
+<tr>
+<td><%= p.full_name %></td>
+<td><%= p.full_name_kana %></td>
+<td class="email"><%= p.email %></td>
+<td class="date"><%= p.birthday %></td>
+<td><%= p.gender %></td>
+<td class="actions">
+<%= link_to 'more', [:cost, c] %>|
+<%= link_to 'edit', [:edit, :cost, c] %> |
+<%= link_to 'delete', [:cost, c], method: :delete,
+date: {confirm: 'confirm to delete'}%>
+</td>
+</tr>
+<% end %>
+</table>
+
+<% paginate @sales %>
+
+<div class="links">
+<%= link_to 'New register', :new_cost_sales %>
+</div>
+</div>
+
