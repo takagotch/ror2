@@ -50,5 +50,14 @@ class Cost::ProgramsController < Cost::Base
 		flash.notice = 'Delete programs'
 		redirect_to :cost_programs
 	end
+	
+	#PATCH
+	def entries
+		entries_form = Staff::EntriesForm.new(Program.find(params[:id]))
+		entries_form.assign_attributes(params[:form])
+		entries_form.save
+		flash.notice = 'update flag'
+		redirect_to :staff_programs
+	end
 end
 
