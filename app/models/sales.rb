@@ -1,7 +1,12 @@
 class Sales < ActiveRecord::Base
+	include EmailHolder
+	include PersonalNameHolder
+	include PasswordHolder
+
 	has_many :addresses, dependent: :destroy
-	has_one :home_address, autosave: true
-	has_one :work_address, autosave: true
+	has_one :home_address, autosave: true, dependent: :destroy
+	has_one :work_address, autosave: true, dependent: :destroy
+
 	has_many :phones, dependent: :destroy
 	has_many :personal_phones, -> { where(address_id: nil).order(:id)},
 		class_name: 'Phone',autosave: true
@@ -9,8 +14,16 @@ class Sales < ActiveRecord::Base
 	has_many :programs, through: :entries
 
 	validates :gender, includion: {in: %w(male female),allow_bank: true}
+	
+	before_validation do
+		self.email_for_index = email.downcase if email
+	end
 
-	include EmailHolder
-	include PersonalNameHolder
-	include PasswordHolder
+	def password=(raw_password)
+		if raw_password.kind_of?(String)
+			self.hashed_password = BCrypt::Password.create(raw_password)
+		elsif raw_password.nil?
+			self.hashed_password = nil
+		end
+	end
 end
