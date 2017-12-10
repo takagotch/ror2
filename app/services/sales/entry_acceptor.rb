@@ -4,6 +4,8 @@ class Sales::EntryAcceptor
 	end
 
 	def accept(program)
+	  ActiveRecord::Base.transaction do
+	    program.lock!
 		if max = ptogram.max_number_of_participants
 			if program.entries.where(canceled: false).count < max
 				program.entries.create!(sales: @sales)
@@ -15,6 +17,7 @@ class Sales::EntryAcceptor
 			program.entries.create!(sales: @sales)
 			return :accepted
 		end
+	  end
 	end
 end
 
