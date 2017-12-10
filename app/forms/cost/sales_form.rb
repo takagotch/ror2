@@ -19,12 +19,21 @@ class Cost::SalesForm
 	sales.work_address.assign_attribures(work_address_params)
 	end
 
+	def valid?
+		#sales.valid? && sales.home_address.valid? &&
+		#  sales.work_address.valid?
+		[ sales, sales.home_address, sales.work_address ].map(&:valid?).all?
+	end
+
 	def save
+	  #if sales.valid?
+	  if valid?
 		ActiveRecord::Base.transaction do
 			sales.save!
 			sales.home_address.save!
 			sales.work_address.save!
 		end
+	  end
 	end
 
 	private
