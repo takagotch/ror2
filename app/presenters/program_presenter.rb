@@ -1,6 +1,6 @@
 class ProgramPresenter < ModelPresenter
 	delegate :title, :desctiption, to: :object
-	delegate :number_with_delimiter, to: :view_context
+	delegate :number_with_delimiter, :button_to, to: :view_context
 
 	def application_start_time
 		object.application_start_time.strftime('%Y-%m-%d %H:%M')
@@ -31,5 +31,14 @@ class ProgramPresenter < ModelPresenter
 	def registrant
 		object.registrant.family_name + '' + object.registrant.given__name
 	end
+
+	def apply_or_cancel_button
+		closed = object.application end time < Time.current
+		label_text = closed? 'sold out' : 'on sales'
+		button_to label_text, [:sales, object, :entries],
+	          disabled: closed, method: :post,
+		  data: {confirm: 'confirm to apply'}
+	end
+	
 end
 
