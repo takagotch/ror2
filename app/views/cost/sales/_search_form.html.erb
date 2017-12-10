@@ -1,0 +1,24 @@
+<%= form_for @search_form, as: 'search', url: :cost_sales,
+	html: { method: :get, class: 'search' } do |f| %>
+<%= markup do |m|
+	p = FormPresenter.new(f, self)
+	m << p.text_field_block(:family_name_kana, 'furigana :')
+	m << p.text_field_block(:given_name_kana, 'furigana :')
+	m.br
+	m << p.drop_down_list_block(:birth_year, 'birthday',
+	  (1900..Time.current.year).to_a.reverse)
+	m << p.drop_down_list_block(:birth_month, 'birthday:', 1..12)
+	m << p.drop_down_list_block(:birth_mday, 'birthday:', 1..31)
+	m.br
+	m.div do
+	m << p.drop_down_list_block(:address_type, 'address search:',
+	  [ ['home address', 'home' ], ['work address', 'work'] ])
+	end
+	m << p.drop_down_list_block(:prefecture, 'prefecture:',
+	  Address::PREFECTURE_NAMES)
+	m << p.text_field_block(:city, 'city:')
+	m.br
+	m << p.text_field_block(:phone_number, 'phone number:')
+	m << f.submit('search')
+  end%>
+<% end %>
