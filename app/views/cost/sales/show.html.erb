@@ -10,6 +10,8 @@
 		<tr><th>gender</th><td><%= p1.gender %></td></tr>
 		<tr><th>create_date</th><td class="date"><%= p1.created_at %></td></tr>
 		<tr><th>update_date</th><td class="date"><%= p1.updated_at %></td></tr>
+		<tr><th>personal_phone1</th><td><%= p1.personal_phones[0] %></td></tr>
+		<tr><th>personal_phone2</th><td><%= p1.personal_phones[1] %></td></tr>
 		<% if @customer.home_address %>
 			<tr><th colspan="2">homeaddress</th></tr>
 			<tr><th>postalcode</th><td><%= p2.postal_code %></td></tr>
@@ -17,6 +19,8 @@
 			<tr><th>city</th><td><%= p2.city %></td></tr>
 			<tr><th>address1</th><td><%= p2.address1 %></td></tr>
 			<tr><th>address2</th><td><%= p2.address2 %></td></tr>
+			<tr><th>home_phone1</th><%= p2.phone[0] %></td></tr>
+			<tr><th>home_phone2</th><%= p2.phone[1] %></td></tr>
 		<% end %>
 		<% if @sales.work_address %>
 			<% p3 = AddressPresenter.new(@sales.work_address, self) %>
@@ -28,6 +32,8 @@
 			<tr><th>city</th><td><%= p3.city %></td></tr>
 			<tr><th>address1</th><td><%= p3.address1 %></td></tr>
 			<tr><th>address2</th><td><%= p3.address2 %></td></tr>
+			<tr><th>work_phone1</th><td><%= p3.phones[0] %></td></tr>
+			<tr><th>work_phone2</th><td><%= p3.phones[1] %></td></tr>
 		<% end %>
 	</table>
 </div>

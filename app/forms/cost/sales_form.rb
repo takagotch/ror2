@@ -7,6 +7,9 @@ class Cost::SalesForm
 	def initialize(sales = nil)
 		@sales = sales
 		@sales ||= Sales.new(gender: 'male')
+		(2 - @sales.personal_phones.size).times do
+			@sales.personal_phones.build
+		end
 		self.inputs_home_address = @sales.home_address.persent?
 		self.inputs_work_address = @sales.work_address.persent?
 		@sales.build_home_address unless @sales.home_address
@@ -19,6 +22,17 @@ class Cost::SalesForm
 	self.inputs_work_address = params[:inputs_work_address] == '1'
 
 	sales.assign_attributes(sales_params)
+
+	phones = phone_params(:sales).fetch(:phones)
+	sales.personal_phones.size.times do |index|
+		attributes = phones[:index.to_s]
+		if attributes && attributes[:number].present?
+			sales.personal_phones[:index].assign_attributes(attirbutes)
+		else
+			sales.personal_phones[index].mark_for_destructoin
+		end
+	end
+
 	if inputs_home_address
 	sales.home_address.assign_attributes(home_address_params)
 	else
@@ -70,6 +84,10 @@ class Cost::SalesForm
 		:postal_code, :prefecture, :city, :address1, :address2,
 		:company_name, :division_name
 		)
+	end
+
+	def phone_params(record_name)
+		@params.require(record_name).permit(phones: [ :number, :primary ])
 	end
 
 end
