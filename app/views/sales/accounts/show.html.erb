@@ -1,0 +1,21 @@
+<% @title = 'Account info' %>
+<h1><%= @title %></h1>
+
+<div class="table-wrapper">
+	<div class="links">
+		<%= link_to 'edit', :edit_sales_account %>
+	</div>
+
+	<table class="attributes">
+		<tr><th colspan="2">Basic info</th></tr>
+		<% p1 = SalesPresenter.new(@sales, self) %>
+		<tr><th>Name</th><td><%= p1.full_name %></td></tr>
+		<tr><th>kana</th><td><%= p1.full_name_kana %></td></tr>
+		<tr><th>birthday</th><td class="date"><%= p1.birthday %></td></tr>
+		<tr><th>gender</th><td><%= p1.gender %></td></tr>
+		<tr><th>phone1</th><td><%= p1.personal_phones[0] %></td></tr>
+		<tr><th>phone2</th><td><%= p1.personal_phones[1] %></td></tr>
+
+	
+	</table>
+</div>
