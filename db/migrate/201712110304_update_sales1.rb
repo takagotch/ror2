@@ -9,6 +9,7 @@ WHERE birthday IS NOT NULL
 end
 
 def down
+	#raise ActiveRecord::IrreversibleMigration
 excute(%q{
 UPDATE sales SET birth_year = NULL,
 birth_month = NULL,
