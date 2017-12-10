@@ -1,0 +1,15 @@
+<% @title = 'edit sales accounts' %>
+<h1><%= @title %></h1>
+
+<div id="generic-form">
+	<%= form_for @sales_form, as: 'form',
+url: [:cost, @sales_form.sales ] do |f| %>
+</div>
+<% render 'form', f: f %>
+<div class="button">
+	<%= f.submit 'edit' %>
+	<%= link_to 'cancel', :cost_sales %>
+</div>
+<% end %>
+</div>
+
