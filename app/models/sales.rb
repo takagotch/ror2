@@ -8,7 +8,7 @@ class Sales < ActiveRecord::Base
 	has_one :work_address, autosave: true, dependent: :destroy
 
 	has_many :phones, dependent: :destroy
-	has_many :personal_phones, -> { where(address_id: nil).order(:id)},
+	has_many :personal_phones, -> { where(address_id: nil).order(:id) },
 		class_name: 'Phone',autosave: true
 	has_many :entries, dependent: :destroy
 	has_many :programs, through: :entries
