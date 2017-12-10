@@ -1,8 +1,10 @@
 class Cost::SalesControler < Cost::Base
 def index
-	@saerch_form = Cost::SalesSearchFrom.new
-	@sales = Sales.order(:family_name_kana, :given_name_kana)
-		.page(params[:page])
+	#@saerch_form = Cost::SalesSearchFrom.new
+	#@sales = Sales.order(:family_name_kana, :given_name_kana)
+	#	.page(params[:page])
+	@search_form = Cost::SalesSerchForm.new(params[:search])
+	@sales = @search_form.search.page(params[:page])
 end
 
 def show
