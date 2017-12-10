@@ -27,6 +27,14 @@ class Sales < ActiveRecord::Base
 		allow_blank: true
 	}
 
+	def before_save do
+	if birthday
+		self.birth_year = birthday.year
+		self.birth_month = birthday.month
+		self.birth_mday = birthday.mday
+	end
+	end
+
 	def password=(raw_password)
 		if raw_password.kind_of?(String)
 			self.hashed_password = BCrypt::Password.create(raw_password)
