@@ -3,10 +3,18 @@
 	<legend>Basic info</legend>
 	<%= render 'sales_fields', f: f %>
 </fieldset>
+<div>
+	<%= f.check_box :inputs_home_address %>
+	<%= f.label :input_home_address, 'input home address' %>
+</div>
 <fieldset id="home-address-fields">
 	<legend>address</legend>
 	<%= render 'home-address-field', f: f %>
 </fieldset>
+<div>
+	<%= f.check_box :inputs_work_address %>
+	<%= f.label :inputs_work_address, 'input work address' %>
+</div>
 <fieldset>
 	<ledgend>Work</legend>
 <%= render 'work_address_fields', f: f %>
