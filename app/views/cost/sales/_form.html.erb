@@ -1,0 +1,14 @@
+<%= FormPresenter.new(f, self).notes%>
+<fieldset id="customer-fields">
+	<legend>Basic info</legend>
+	<%= render 'sales_fields', f: f %>
+</fieldset>
+<fieldset id="home-address-fields">
+	<legend>address</legend>
+	<%= render 'home-address-field', f: f %>
+</fieldset>
+<fieldset>
+	<ledgend>Work</legend>
+<%= render 'work_address_fields', f: f %>
+</fieldset>
+
