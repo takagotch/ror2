@@ -19,6 +19,14 @@ class Cost::SalesForm
 	sales.work_address.assign_attribures(work_address_params)
 	end
 
+	def save
+		ActiveRecord::Base.transaction do
+			sales.save!
+			sales.home_address.save!
+			sales.work_address.save!
+		end
+	end
+
 	private
 	def sales_params
 		@params.require(:sales).permit(
