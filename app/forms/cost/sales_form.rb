@@ -14,6 +14,9 @@ class Cost::SalesForm
 		self.inputs_work_address = @sales.work_address.persent?
 		@sales.build_home_address unless @sales.home_address
 		@sales.build_work_address unless @sales.work_address
+		(2 - @sales.home_address.phones.size).times do
+			@sales.home_address.phones.build
+		end
 	end
 
 	def assign_attributes(params = {})
@@ -35,6 +38,15 @@ class Cost::SalesForm
 
 	if inputs_home_address
 	sales.home_address.assign_attributes(home_address_params)
+	
+	phones = phone_params.assign(:home_address).fetch(:phones)
+	sales.home_address.phones.size.times do |index|
+		if attributes = phones[index.to_s]
+	          sales.home_address.phones[index].assign_attributes(attributes)
+		else
+		  sales.home_address.phones[index].mark_for_destruction
+		end
+	end
 	else
 		#sales.home_address = nil
 		sales.home_address.mark_for_destruction

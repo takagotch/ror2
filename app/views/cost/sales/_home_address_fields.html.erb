@@ -9,6 +9,14 @@ Address::PREFECTURE_NAMES)
 		  m << q.text_field_block(:address1, 'address1', size:40)
 		end
 		m << p.text_field_block(:address2, 'address2', size: 40)
+		m.div(class: 'input-block') do
+			m << p.decorated_label(:personal_phones, 'Phone')
+			m.ol do
+				p.object.phones.each_with_index do |phone, index|
+					m << render('phone_fields', f: ff, phone: phone, index: index)
+				end
+			end
+		end
 	end %>
 <% end %>
 
