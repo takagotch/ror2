@@ -1,4 +1,4 @@
-class Sales::Acountscontroller < Customer::Base
+class Sales::AcountsController < Sales::Base
 def show
   @sales = current_sales
 end

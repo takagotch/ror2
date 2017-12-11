@@ -12,6 +12,12 @@ class Sales < ActiveRecord::Base
 		class_name: 'Phone',autosave: true
 	has_many :entries, dependent: :destroy
 	has_many :programs, through: :entries
+	
+	has_many :messages
+	has_many :outbound_messages, class_name: 'SalesMessage',
+		foreign_key: 'sales_id'
+	has_many :inbound_messages, class_name: 'CostMessage',
+		foreign_key: 'sales_id'
 
 	validates :gender, includion: {in: %w(male female),allow_bank: true}
 	

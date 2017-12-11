@@ -1,0 +1,3 @@
+class SalesMessage < Message
+end
+
