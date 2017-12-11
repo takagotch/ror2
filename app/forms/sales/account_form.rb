@@ -15,6 +15,9 @@ class Sales::AccountForm
 	end
 
 	def assign_attributes(params = {})
+	@params = params
+	self.inputs_home_address = params[:inputs_home_address].in?['1', 'true']
+	self.inputs_work_address = params[:inputs_work_address].in?['1', 'true']
 	end
 
 	private

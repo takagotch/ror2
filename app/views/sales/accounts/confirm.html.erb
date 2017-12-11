@@ -1,7 +1,7 @@
 <% @title = 'confirm update accounts' %>
 <h1><%= @title %></h1>
 
-<div id="gemeric-form">
+<div id="gemeric-form" class="confirming">
 	<%= form_for @sales_form, as: 'form', url: :sales_account do |f| %>
 		<p>text</p>
 		<%= render 'form', f: f %>

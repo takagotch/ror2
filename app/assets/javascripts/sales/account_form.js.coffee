@@ -1,4 +1,5 @@
 $(document).on 'page:change', ->
+return if $('div.confirming').length
 // $('form.edit_form').on 'click', '#enable-password-field', ->
 //   $('#enable-password-field').hide()
 //    $('#disable-password-field').show()

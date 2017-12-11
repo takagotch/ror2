@@ -21,12 +21,16 @@ end
 def update
 	@sales_form = Sales::AccountForm.new(current_sales)
 	@sales_form.assign_attributes(params[:form])
-	if @sales_form.save
+	if params[:commit]
+	  if @sales_form.save
 		flash.notice = 'update accounts info'
 		redirect_to :cost_account
-	else
+	  else
 		flash.now.alert = 'invalidated input'
 		render action: 'edit'
+	  end
+	else
+	  render action: 'edit'
 	end
 end
 end
