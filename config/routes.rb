@@ -5,13 +5,15 @@ Rails.application.routes.draw do
     namespace :cost,path:config[:cost][:path]do
       root 'top#index'
       get  'login' => 'sessions#new,as::login'
-      resource :session,only:[:create,:destroy]
-      resource :account,except:[:new,:create]
-      resource :password,only[:show,:edit,:update]
-      resource :sales
+      resource :session, only:[:create,:destroy]
+      resource :account, except:[:new,:create] do
+        patch :confirm
+      end
+      resource :password, only:[:show,:edit,:update]
+      #resource :sales
       resources :sales
-      resource :programs do
-	      patch :entries, on: :member
+      resources :programs do
+        patch :entries, on: :member
       end
     end
   end
