@@ -34,14 +34,23 @@ Rails.application.routes.draw do
   end
 
   constraint host:config[:sales][:host]do
-    namespace :customer,path:config[:sales][:path]do
+    namespace :sales,path:config[:sales][:path]do
       root'top#index'
-      get 'login' => 'sessions#new', as: :login
+      get 'login' => 'sessions#new', as::login
       resource :session, only:[:create, :destroy]
-      resource :account, except:[:new, :create, :destroy]
+      resource :account, except:[:new, :create, :destroy] do
+        patch :confirm
+      end
       resources :programs, only:[:index, :show] do
-      resources :entries, only: [:create] do
-	      patch:cancel, on: :member
+        resources :entries, only: [:create] do
+          patch:cancel, on: :member
+          end
+        #resources :messages, only:[:index, :show, :new, :create] do
+	resources :messages, except: [:edit, :update ] do
+          post :confirm, on::collection
+	  resource : reply, only:[:new, :create] do
+	    post :confirm
+	  end
         end
       end
     end
