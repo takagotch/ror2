@@ -1,14 +1,22 @@
 <%= FormPresenter.new(f, self).notes%>
 <fieldset id="customer-fields">
 	<legend>Basic info</legend>
-	<%= render 'sales_fields', f: f %>
+	<%= render 'sales_fields', f: f, confirming: false %>
 </fieldset>
+<div>
+	<%= f.check_box :inputs_home_address %>
+	<%= f.label :inputs_home_address, 'input u home address' %>
+</div>
 <fieldset id="home-address-fields">
 	<legend>address</legend>
-	<%= render 'home-address-field', f: f %>
+	<%= render 'home-address-field', f: f, confirming: false %>
 </fieldset>
+<div>
+	<%= f.check_bos :inputs_work_address %>
+	<%= f.label :inputs_work_address, 'input u work address' %>
+</div>
 <fieldset>
 	<ledgend>Work</legend>
-<%= render 'work_address_fields', f: f %>
+<%= render 'work_address_fields', f: f, confirming: false %>
 </fieldset>
 

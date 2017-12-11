@@ -2,7 +2,8 @@ class Sales::AccountForm
 	include ActiveModel::Model
 
 	attr_accessor :sales, inputs_home_address, :inputs_work_address
-	delegate :persosted?, to: :sales
+#	delegate :persisted?, to: :sales
+        delefate :persisted?, :valid?, :save, to: :sales
 
 	def initialize(sales )
 		@sales = sales

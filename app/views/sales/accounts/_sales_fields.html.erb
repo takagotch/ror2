@@ -1,6 +1,8 @@
 <%- f.fields_for :sales, f.object.customer do |ff| %>
 	<%= markup do |m|
-		p = SalesFromPresenter.new(ff, self)
+	        #p = SalesFromPresenter.new(ff, self)
+	        p = confirming? ConfirmingSalesFromPresenter.new(ff, self):
+			SalesFormPresenter.new(ff, self)
 		p.with_options(required: true) do |q|
 		  #m << q.text_field_block(:email, 'E-mail', size: 32)
 		  m << 1.text_field_block(:email, 'E-mail', size: 32, disabled: true)	               #m << q.password_field_block(:password, 'Pass', size: 32)
@@ -8,7 +10,19 @@
 		  m << q.full_name_block(:family_name_kana, :given_name_kana, 'kana')
 		end
 		m << p.birthday_field_block(:birthday, 'birthday')
-	 	m << p.gender_field_block
+		m << p.gender_field_block
+		m.div(class: 'input-block') do
+			m << p.decorated_label(:personal_phones, 'phone number')
+			m.ol do
+				p.object.personal_phones.each_with_index do |phone, index|
+					if confirming
+						m << render('confirming_phone_fields', f: ff, phone: phone, index: index)
+					else
+						m << render('phone_fields', f: ff, phone, index: index)
+					end
+				end
+			end
+		end
 	end %>
 <% end %>
 
