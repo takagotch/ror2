@@ -45,6 +45,10 @@ Rails.application.routes.draw do
         resources :entries, only: [:create] do
           patch:cancel, on: :member
           end
+      end
+      reources :messages, only:[ :new, :create ] do
+	      post :confirm, on: :collection
+      end
         #resources :messages, only:[:index, :show, :new, :create] do
 	resources :messages, except: [:edit, :update ] do
           post :confirm, on::collection
@@ -52,7 +56,6 @@ Rails.application.routes.draw do
 	    post :confirm
 	  end
         end
-      end
     end
   end
 
