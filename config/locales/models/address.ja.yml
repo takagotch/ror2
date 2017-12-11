@@ -1,0 +1,12 @@
+ja:
+        activerecord:
+                attributes:
+                        address:
+                                postal_code: postal_code
+                                prefecture: prefecture
+                                city:
+                                        address1: address1
+                                        address2: address2
+                                work_address:
+                                        company_name: company_name
+                                        division_name: division_name

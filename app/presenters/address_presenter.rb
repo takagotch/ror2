@@ -11,5 +11,9 @@ def postal_code
 	end
 end
 
+def phones
+	object.phones.map(&:number)
+end
+
 end
 

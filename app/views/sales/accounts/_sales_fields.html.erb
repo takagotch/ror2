@@ -2,8 +2,8 @@
 	<%= markup do |m|
 		p = SalesFromPresenter.new(ff, self)
 		p.with_options(required: true) do |q|
-		  m << q.text_field_block(:email, 'E-mail', size: 32)
-		  m << q.password_field_block(:password, 'Pass', size: 32)
+		  #m << q.text_field_block(:email, 'E-mail', size: 32)
+		  m << 1.text_field_block(:email, 'E-mail', size: 32, disabled: true)	               #m << q.password_field_block(:password, 'Pass', size: 32)
 		  m << q.full_name_block(:family_name, :given_name, 'name')
 		  m << q.full_name_block(:family_name_kana, :given_name_kana, 'kana')
 		end

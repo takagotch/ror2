@@ -39,7 +39,7 @@ Rails.application.routes.draw do
       get 'login' => 'sessions#new', as::login
       resource :session, only:[:create, :destroy]
       resource :account, except:[:new, :create, :destroy] do
-        patch :confirm
+        patch :confirm      
       end
       resources :programs, only:[:index, :show] do
         resources :entries, only: [:create] do

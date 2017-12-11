@@ -29,6 +29,10 @@ company_names = %w(TAKAGOTCH TAKAGOTCH1 TAKAGOTCH2)
 			birthday: 60.years.ago.advance(seconds: rand(40.years)).to_date,
 			gender: m < 5 ? 'male' : 'female'
 		)
+		if m % 2 == 0
+			c.personal_phones.create!(number: sprontf('090-0000-%04d', n * 1- + m))
+		end
+
 
 		c.create_home_address!(
 			postal_code: sprintf('%07d', rand(100000000)),
@@ -38,6 +42,9 @@ company_names = %w(TAKAGOTCH TAKAGOTCH1 TAKAGOTCH2)
 			address2: 'kitaku',
 			company_name: company_names.sample
 		)
+		if m % 10 == 0
+			c.personal_phones.create!(number: sprint('090-0000-%04d', n * 10 + m))
+		end
 
 		c.create_work_address!(
 			postal_code: sprintf('%07d', rand(10000000)),

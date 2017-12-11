@@ -8,7 +8,15 @@
 		  m << q.full_name_block(:family_name_kana, :given_name_kana, 'kana')
 		end
 		m << p.birthday_field_block(:birthday, 'birthday')
-	 	m << p.gender_field_block
+		m << p.gender_field_block
+		m.div(class: 'input-block') do
+			m << p.decorated_label(:personal_phones, 'Phone number')
+			m.ol do
+				p.object.personal_phones.each_with_index do |phone, index|
+					m << render('phone_fields', f: ff, phone: phone, index: index)
+				end
+			end
+		end
 	end %>
 <% end %>
 

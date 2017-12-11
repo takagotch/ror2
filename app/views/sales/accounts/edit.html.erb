@@ -1,15 +1,16 @@
-<% @title = 'edit sales accounts' %>
+<% @title = 'edit accounts' %>
 <h1><%= @title %></h1>
 
 <div id="generic-form">
-	<%= form_for @sales_form, as: 'form',
-url: [:cost, @sales_form.sales ] do |f| %>
-</div>
+  #<%= form_for @sales_form, as: 'form', url: [:cost, @sales_form.sales ] do |f| %>
+  <%= form_for @sale_form, as: 'form', url: :sales_account do |f| %>
+
 <% render 'form', f: f %>
 <div class="button">
 	<%= f.submit 'edit' %>
 	<%= link_to 'cancel', :cost_sales %>
 </div>
 <% end %>
+
 </div>
 

@@ -1,0 +1,21 @@
+ja:
+        activerecord:
+                attributes:
+                        sales:
+                                email: E-mail
+                                password: pass
+                                family_name: name
+                                given_name: name
+                                family_name_kana: name_kana
+                                given_name_kana: name_kana
+                                birthday: birthday
+                                gender: gender
+        error:
+                modles:
+                        sales:
+                                attributes:
+                                        email:
+                                                taken: taken
+                                        birthday:
+                                                after_or_equal_to: 1900-
+                                                before: date
