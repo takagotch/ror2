@@ -1,0 +1,14 @@
+<% @title = 'account info confirm' %>
+<h1><%= @title %></h1>
+
+<div id="generic-form">
+	<%= form_for @cost_member, url: :cost_account do |f| %>
+		<p>confirm update?</p>
+		<%= render 'confirming_form', f: f %>
+		<div class="buttons">
+			<%= f.submit 'update' %>
+			<%= f.submit 'correct', name: 'correct' %>
+		</div>
+	<% end %>
+</div>
+

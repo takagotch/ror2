@@ -1,0 +1,13 @@
+<% @title = 'edit account info' %>
+<h1><%= @title %></h1>
+
+<div id="generic-form">
+	<%= form_for @cost_member, url: :confirm_cost_account do |f| %>
+		<%= render 'form', f: f %>
+		<div class="buttons">
+			<%= f.submit 'confirm display' %>
+			<%= link_to 'cancel', :cost_account %>
+		</div>
+	<% end %>
+</div>
+
