@@ -1,5 +1,6 @@
 class Program < ActiveRecord::Base
-	has_many :entries, dependent: :destroy
+	#has_many :entries, dependent: :destroy
+	has_many :entries, dependent: :restrict_with_exception
 	has_many :applicants, through: :entries, source: :sales
 	belongs_to :registrant, class_name: 'CostMember'
 	
@@ -25,9 +26,15 @@ class Program < ActiveRecord::Base
 			if: -> (obj){obj.application_start_time}
 	}
 	validates :min_number_of_participants, numericality: {
-		only_integer: true, greate_than_ro_equal_to: 1,
-		less_than_or_equal_to: 1000, allow_blankL true
+		only_integer: true, greate_than_or_equal_to: 1,
+		less_than_or_equal_to: 1000, allow_blank: true
 	}
+
+	validates : max_number_of_participants, numericality: {
+		only_integer: true, greater_than_or_equal_to: 1,
+		less_than_or_equal_to: 1000, allow_blank: true
+	}
+
 	validate do
 		if min_number_of_participants && max_number_of_participants &&
 				min_number_of_participants > max_number_of_participants
@@ -38,11 +45,11 @@ class Program < ActiveRecord::Base
 
 	#performance
 	scope :listing, -> {
-		joins('LEFT JOIN entries ON programs.id = entried.program_id')
-			.select('programs.*,count(entries.id) AS number_of_applicants')
-			.group('programs.id')
-			.order(application_start_time: :desc)
-			.include(:registrant)
+	  joins('LEFT JOIN entries ON programs.id = entried.program_id')
+	    .select('programs.*,COUNT(entries.id) AS number_of_applicants')
+	    .group('programs.id')
+	    .order(application_start_time: :desc)
+	    .include(:registrant)
 	}
 
 	scope :published, -> {

@@ -45,10 +45,14 @@ class Cost::ProgramsController < Cost::Base
 	end
 
 	def destroy
-		program = Program.find(params[:id])
-		program.destroy!
-		flash.notice = 'Delete programs'
-		redirect_to :cost_programs
+	  program = Program.find(params[:id])
+	  if program.deletable?
+	    program.destroy!
+	    flash.notice = 'Delete programs'
+	  else
+	    flash.alert = 'Not Delete programs'
+	  end
+	  redirect_to :cost_programs
 	end
 	
 	#PATCH
