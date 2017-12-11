@@ -1,0 +1,28 @@
+<h1><%= @title %></h1>
+<div class="table-wrapper">
+  <%= paginate @messages %>
+  <table class="listing">
+    <tr>
+      <th>Sender</th>
+      <th>about</th>
+      <th>send_date</th>
+      <th>action</th>
+    </tr>
+    <% @messages.each do |m| %>
+       <% p = MessagePresenter.new(m, self) %>
+       <tr>
+       <td><%= p.sender %></td>
+       <td><%= p.truncated_subject %></td>
+       <td><%= p.created_at %></td>
+       <td class="actions">
+          <%= link_to 'more', sales_message_path(m) %>
+	  <%= link_to 'delete', sales_mesage_path(m), method: :delete, 
+              data: {confirm: 'confirm delete?'} %>
+       </td>
+       </tr>
+    <% end %>
+  </table>
+
+  <%= paginate @messages %>
+</div>
+

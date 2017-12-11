@@ -1,0 +1,7 @@
+<%= markup(:div, id:'confirming-panel') do |m|
+  p = ConfirmingFormPresenter.new(f.self)
+  m.div 'confirm reply ?'
+  m << p.text_field_block(:subject, 'subject')
+  m << p.text_area_block(:body, 'text')
+end%>
+

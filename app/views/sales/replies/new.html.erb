@@ -1,0 +1,15 @@
+<% @title = 'reply msg'%>
+<h1><%= @title %></h1>
+
+<div id="generic-form" class="table-wrapper">
+	<%= form_for @reply,
+		url: confirm_sales_message_reply_path(@message) do |f| %>
+		<%= render 'form', f: f %>
+		<div class= "buttons">
+			<%= f.submit 'confirm display' %>
+			<%= link_to 'cancel', :cost_messages %>
+		</div>
+	<% end %>
+	<%= render 'messages' %>
+</div>
+

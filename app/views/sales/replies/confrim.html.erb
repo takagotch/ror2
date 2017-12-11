@@ -1,0 +1,15 @@
+<% @title = 'ocnfirm reply msg' %>
+<h1><%= @title %></h1>
+
+<div id="generic-form" class="table-wrapper">
+	<%= form_for @reply, url: sales_message_reply_path(@message) do |f| %>
+		<%= render 'confirming_form', f: f %>
+		<div class="buttons">
+			<%= f.submit 'submit' %>
+			<%= f.submit 'correct', name: 'correct' %>
+			<%= link_to 'cancel', :sales_messages %>
+		</div>
+	<% end %>
+	<%= render 'message' %>
+</div>
+
