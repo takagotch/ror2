@@ -13,6 +13,19 @@ def destroy
 	redirect_to :back
 end
 
+#POST/DELETE
+def tag
+	message = SalesMessage.find(params[:id])
+	if request.post?
+		message.add_tag(params[:label])
+	elsif request.delete?
+		message.remove_tag(params[:label])
+	else
+		raise
+	end
+	render text: 'OK'
+end
+
 def show
 	@message = Message.find(params[:id])
 end

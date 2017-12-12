@@ -9,12 +9,22 @@
 	<% end %>
 
 	<table class="attributes">
-		<% p = MessagePresenter.new(@message, self) %>
-		<tr><th>category</th><td><%= p.type %></td></tr>
-		<tr><th>sender</th><td><%= p.sender %></td></tr>
-		<tr><th>receiver</th><td><%= p.receiver %></td></tr>
-		<tr><th>subject</th><td><%= p.subject %></td></tr>
-		<tr><th>create_at</th><td class="date"><%= p.created_at %></td></tr>
+	  <% p = MessagePresenter.new(@message, self) %>
+	  <tr><th>category</th><td><%= p.type %></td></tr>
+	  <tr><th>sender</th><td><%= p.sender %></td></tr>
+	  <tr><th>receiver</th><td><%= p.receiver %></td></tr>
+	  <tr><th>subject</th><td><%= p.subject %></td></tr>
+	  <tr><th>create_at</th><td class="date"><%= p.created_at %></td></tr>
+	  <tr>
+	  <th>tag</th>
+	    <td>
+	      <%= markup(:ul, id: 'tag-it', 'date-message-id' => @message.id) do |m|
+	          @message.tags.each do |tag|
+	          m.li tag.value
+	        end		
+	      end %>
+	    </td>
+   	  </tr>
 	</table>
 
 	<div class="tree"><%= p.tree %></div>
