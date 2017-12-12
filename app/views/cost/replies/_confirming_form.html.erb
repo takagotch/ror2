@@ -1,0 +1,7 @@
+<%= markup(:div, id: 'confriming-panel') do |m|
+	p = ConfirmingFormPresenter.new(f, self)
+	m.div 'Enter?'
+	m << p.text_field_block(:subject, 'subject')
+	m << p.text_area_block(:body, 'text')
+end %>
+

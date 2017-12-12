@@ -22,5 +22,15 @@ default_scope { order(createed_at: :desc)}
 #Message.where(deleted: false)
 #Message.where(deleted: false).unscope(:order)
 #Message.where(deleted: false).reorder(created_at: :asc)
+
+before_validation do
+	if parent
+		self.root = parent.root || parent
+		self.sales = parent.sales
+	end
+end
+
+attr_accessor :child_nodes
+
 end
 
