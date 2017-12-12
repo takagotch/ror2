@@ -23,8 +23,20 @@ def destroy
 	redirect_to :back
 end
 
+def confirm
+	@message = SalesMessage.new(sales_message_params)
+	if @message.valid?
+		render ation: 'confirm'
+	else
+		flash.now.alert = 'invalided u inputs'
+		render action: 'new'
+	end
+end
+
 private
-#...
+def sales_message_params
+	params.require(:sales_message).permit(:subject, :body)
+end
 
 end
 
