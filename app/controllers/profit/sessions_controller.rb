@@ -1,3 +1,14 @@
+class Profit::SessionsController < Profit::Base
+
+def new
+	if current_administrator
+	redirect_to :profit_root
+	else
+		@form = Profit::LoginFrom.new
+		render action: 'new'
+	end
+end
+
 def create
 	@form = Cost::LoginForm.new(params[:profit_login_form])
 	if @from.email.present?
@@ -19,3 +30,4 @@ def create
 end
 end
 
+end

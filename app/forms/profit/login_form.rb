@@ -1,4 +1,3 @@
-
 class Profit::LoginForm
 	include ActiveModel::Model
 
