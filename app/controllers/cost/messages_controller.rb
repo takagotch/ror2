@@ -13,5 +13,9 @@ def destroy
 	redirect_to :back
 end
 
+def show
+	@message = Message.find(params[:id])
+end
+
 end
 

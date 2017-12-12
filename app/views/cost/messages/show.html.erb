@@ -1,0 +1,17 @@
+<% @title = 'msg more' %>
+<h1><%= @title %></h1>
+
+<div class="table-wrapper">
+	<table class="attributes">
+		<% p = MessagePresenter.new(@message, self) %>
+		<tr><th>category</th><td><%= p.type %></td></tr>
+		<tr><th>sender</th><td><%= p.sender %></td></tr>
+		<tr><th>receiver</th><td><%= p.receiver %></td></tr>
+		<tr><th>subject</th><td><%= p.subject %></td></tr>
+		<tr><th>create_at</th><td class="date"><%= p.created_at %></td></tr>
+	</table>
+
+	<div class="tree"><%= p.tree %></div>
+	<div class="body"><%= p.formatted_body %></div>
+</div>
+
