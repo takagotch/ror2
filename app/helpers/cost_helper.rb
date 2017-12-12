@@ -3,7 +3,7 @@ module CostHelper
 
 	def number_of_unprocessed_messages
 	markup do |m|
-		m.a(hrefL '#') do
+		m.a(href: inbound_cost_messages_path) do
 		m << 'new contact'
 		if(c = SalesMessage.unprocessed.count) > 0
 			anchor_text = "(#{c})"

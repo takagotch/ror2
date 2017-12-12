@@ -1,0 +1,16 @@
+<% @title = 'dashboard' %>
+<h1><%= @title %></h1>
+
+<ul class="menu">
+	<li><%= link_to 'sales management', :cost_sales %></li>
+	<li><%= link_to 'program management', :cost_programs %></li>
+	<li>
+		<ul>
+		  <li><%= link_to 'contact lists', :inbound_cost_messages %></li>
+		  <li><%= link_to 'reply lists', :outbound_cost_messages %></li>
+		  <li><%= link_to 'all messages lists', :cost_messages %></li>
+		  <li><%= link_to 'trash', :deleteed_cost_messages %></li>
+		</ul>
+	</li>
+</ul>
+

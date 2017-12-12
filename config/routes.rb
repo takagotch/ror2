@@ -53,12 +53,16 @@ Rails.application.routes.draw do
 	      post :confirm, on: :collection
       end
         #resources :messages, only:[:index, :show, :new, :create] do
-	resources :messages, except: [:edit, :update ] do
-          post :confirm, on::collection
-	  resource : reply, only:[:new, :create] do
-	    post :confirm
-	  end
-        end
+	#
+        #resources :messages, except: [:edit, :update ] do
+        #  post :confirm, on::collection
+	#  resource : reply, only:[:new, :create] do
+	#    post :confirm
+	#  end
+        #end
+        resources :messages, only: [:index, :show, :destroy] do
+		get :inbound, :outbound, :deleted, :count, on: :collection
+	end
     end
   end
 
