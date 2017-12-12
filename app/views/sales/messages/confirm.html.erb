@@ -1,0 +1,13 @@
+<% @title = 'new contact confirm' %>
+<h1><%= @title %></h1>
+
+<div id="generic-form">
+	<%= form_for @message, url: :sales_messages do |f| %>
+		<%= render 'confirming_form', f: f %>
+		<div class="buttons">
+	        <%= f.submit 'correct', name: 'correct' %>
+		<%= link_to 'cancel', :sales_root %>
+		</div>
+	<% end %>
+</div>
+

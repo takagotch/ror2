@@ -1,0 +1,7 @@
+<%= markup(:div, id: 'confirming-panel') do |m|
+	p = ConfirmintFromPresenter.new(f, self)
+	m.div 'confrim ENTER?'
+	m << p.text_field_block(:subject, 'subject')
+	m << p.text_area_block(:body, 'text')
+end %>
+
