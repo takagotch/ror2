@@ -33,6 +33,22 @@ def confirm
 	end
 end
 
+def create
+	@message = SalesMessage.new(sales_message_params)
+	if params[:commit]
+	  @message.sales = current_sales
+	  if @message.save
+		flash.notice = 'ENTER'
+		redirect_to :sales_root
+	  else
+		flash.now.alert = 'invalided u inputs'
+		render action: 'new'
+	  end
+	else
+		recder action: 'new'
+	end
+end
+
 private
 def sales_message_params
 	params.require(:sales_message).permit(:subject, :body)
