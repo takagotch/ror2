@@ -4,6 +4,7 @@ module ErrorHandlers
 
 	include do
 	rescue_from Exception, with: :resuce500
+	rescue_from ActionController::BadRequest, with: :rescue400
 	rescue_from ActionController::ParameterMissing, with: :resuce400
 	#rescue_from ApplicationController::Forbidden, with: :rescue403
 	#resuce_from ApplicationController::IpAddressRejected, with: :resuce403

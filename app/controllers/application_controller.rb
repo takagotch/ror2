@@ -5,7 +5,7 @@ rescue_from ApplicationController::IpAddressRejected, with: :resuce403
 
 private
 def set_layout
-	if params[:controller].match(%r{\A(cost|profit|sales)\})
+	if params[:controller].match(%r{/A(cost|profit|sales)/})
 			   Regexp.last_match[1]
 		else
 			   'sales'
@@ -17,4 +17,7 @@ def resuce403(e)
 render 'errors/forbidden', status: 403
 end
 
+def reject_non_xhr
+	raise ActionController::BadRequest unless request.xhr?
+end
 
