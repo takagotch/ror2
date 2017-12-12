@@ -15,3 +15,11 @@ before_create do
 	end
 end
 
+default_scope { order(createed_at: :desc)}
+#cost/messages#index|inbound|outbound|deleted
+#Message.where(deleted: false).order(created_at: :desc) =
+#Message.where(deleted: false)
+#Message.where(deleted: false).unscope(:order)
+#Message.where(deleted: false).reorder(created_at: :asc)
+end
+

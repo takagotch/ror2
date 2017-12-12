@@ -1,0 +1,43 @@
+
+<%
+@title = case params[:action]
+	 when 'index'; 'all msg lists'
+	 when 'inbound'; 'contact lists'
+	 when 'outbound'; 'reply lists'
+	 when 'deleted'; 'msg lists trash'
+	 else; raise
+end
+%>
+<h1><%= @title %></h1>
+
+<div class="table-wrapper">
+	<%= paginate @messages %>
+
+	<table class="listing">
+		<tr>
+			<th>category</th>
+			<th>sender</th>
+			<th>receiver</th>
+			<th>subject</th>
+			<th>create_at</th>
+			<th>action</th>
+		</tr>
+		<% @messages.each do |m| %>
+			<% p = MessagePresenter.new(m, self) %>
+			<tr>
+				<td><%= p.type %></td>
+				<td><%= p.sender %></td>
+				<td><%= p.reciever %></td>
+				<td><%= p.truncated_subject %></td>
+				<td><%= p.created_at %></td>
+				<td class="actions">
+				  <%= link_to 'more', cost_message_path(m) %> |
+				  <%= link_to_if m.kind_of?(SalesMessage), 'delete',
+				  cost_message_path(m), method: :delete %>
+			        </td>
+			</tr>
+		<% end %>
+	</table>
+	<%= paginate @messages %>
+</div>
+
