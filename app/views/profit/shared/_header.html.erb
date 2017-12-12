@@ -1,0 +1,11 @@
+<header>
+	<sapn class="logo-mark">takagotch</span>
+<%=
+	if current administrator
+		link_to 'logout'm :profit_session, method: :delete
+	else
+		link_to 'login', :profit_login
+	end
+%>
+</header>
+

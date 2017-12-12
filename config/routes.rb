@@ -39,7 +39,9 @@ Rails.application.routes.draw do
   constraint host:config[:sales][:host]do
     namespace :sales,path:config[:sales][:path]do
       root'top#index'
-      get 'login' => 'sessions#new', as::login
+      get 'login'      => 'sessions#new',    as: :login
+      post 'session'   => 'sessions#create', as: :session
+      delete 'session' => 'sessions#destroy'
       resource :session, only:[:create, :destroy]
       resource :account, except:[:new, :create, :destroy] do
         patch :confirm      
