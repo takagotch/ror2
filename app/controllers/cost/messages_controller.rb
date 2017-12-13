@@ -39,5 +39,29 @@ def show
 	@message = Message.find(params[:id])
 end
 
+#GET
+def inbound
+  @messages = SalesMessage.where(deleted: false)#.page(params[:page])
+  narrow_down
+  @messages = @messages.page(params[:page])
+  render action: 'index'
+end
+
+#GET
+def outbound
+  @messages = CostMessage.where(deleted: false)#.page(params[:page])
+  narrow_down
+  @messges = @messages.page(params[:page])
+  render action: 'index'
+end
+
+#GET
+def deleted
+	@messages = Mesage.where(deleted: true)#.page(params[:page])
+	narrow_down
+	@messages = @messages.page(params[:page])
+	render action: 'index'
+end
+
 end
 
