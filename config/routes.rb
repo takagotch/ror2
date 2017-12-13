@@ -36,9 +36,9 @@ Rails.application.routes.draw do
     end
   end
 
-  constraint host:config[:sales][:host]do
-    namespace :sales,path:config[:sales][:path]do
-      root'top#index'
+ #constraint host: config[:sales][:host] do
+  #namespace :sales, path: config[:sales][:path]do
+     #root 'top#index'
       get 'login'      => 'sessions#new',    as: :login
       post 'session'   => 'sessions#create', as: :session
       delete 'session' => 'sessions#destroy'
@@ -72,7 +72,15 @@ Rails.application.routes.draw do
 	end
     end
   end
-
+ #constraint host: config[:sales][:host] do
+  #namespace :sales, path: config[:sales][:path]do
+  constraing host: config[:sales][:host] do
+   namespace :sales, path: config[:sales][:path] do
+     root'top#index'
+   end
+end
+ 
   root'errors#not_found'
   get'anything'=>'errors#not_found'
 end
+
