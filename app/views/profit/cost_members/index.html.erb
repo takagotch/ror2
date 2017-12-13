@@ -1,3 +1,15 @@
+<% @title = 'Cost Management' %>
+<h1><%= @title %></h1>
+
+<div class="table-wrapper">
+	<div class="links">
+		<%= link_to 'new register', :new_profit_cost_member %>
+	</div>
+	
+	<%= paginate @cost_member %>
+</div>
+
+<table class="listing">
 
 <% @staff_members.each do |m| %>
 	<% p = CostMemberPresenter.new(m, self)%>
@@ -13,3 +25,13 @@
 		#...
 		</td>
 	</tr>
+
+</table>
+
+
+<%= paginate @cost_members %>
+
+<div class="links">
+	<%= link_to 'new register', :new_profit_cost_member %>
+</div>
+</div>
