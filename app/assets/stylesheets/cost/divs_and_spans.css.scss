@@ -7,3 +7,12 @@ padding:          $wide;
 background-color: $very_light_gray;
 }
 
+div.tags{
+margin:  $wide 0;
+padding: $wide;
+background-color: $very_light_gray;
+
+span.current_tag{
+  font-wight: bold;
+}
+}

@@ -2,7 +2,9 @@
 <h1><%= @title %></h1>
 
 <div class="table-wrapper">
-	<% if @message.kind_of?(SalesMessage) %>
+	<%- render 'links' %>
+
+	#<% if @message.kind_of?(SalesMessage) %>
 		<div class="links">
 	          <%= link_to 'reply', new_cost_messages_reply_path(@message) %>
 		</div>

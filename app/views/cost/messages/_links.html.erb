@@ -1,0 +1,9 @@
+<div class="links">
+	<%= link_to 'inbound lists', :inbound_cost_messages %>
+	<%= link_to 'outbound lists', :outbound_cost_messages %>
+	<%= link_to 'all msg lists', :cost_messages %>
+	<%= link_to 'delete', :deleted_cost_messages %>
+	<% if @message.kind_of?(SalesMessage) %>
+		<%= link_to 'reply', new_cost_message_reply_path(@message) %>
+	<% end %>
+</div>
