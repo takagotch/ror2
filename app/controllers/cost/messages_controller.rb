@@ -1,6 +1,15 @@
 class Cost::MessagesController < Cost::Base
 before_action :reject_non_xhr, only: [:count]
 
+def index
+	@messages = Messages.where(delete: false)#.page(params[:page])
+	if params[:tag_id]
+	  @messages = @messages.joins(:message_tag_links)
+		  .where('message_tag_links.tag_id' => params[:tag_id])
+	end
+	@messages = @messages.page(params[:page])
+end
+
 #GET
 def count
 	render text: SalesMessage.unprocessed.count

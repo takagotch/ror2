@@ -70,6 +70,11 @@ Rails.application.routes.draw do
 			post :confirm
 		end
 	end
+	resources :tags, only:[] do
+	  resources :messages, only:[:index] do
+	    get :inbound, :outbound, :deleted, on: :colelction
+	  end
+	end
     end
   end
  #constraint host: config[:sales][:host] do
