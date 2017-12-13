@@ -1,4 +1,13 @@
+xxx.xxx{
 input[type='radio']+label {display: inline-block}
+input[type='radio']+label {display: inline-block}
+}
+div.input-block {
+input {margin-right: $narrow * 2; }
+}
+div.notes{
+}
+
 span.instruction{font-size: $small; color: $dark_gray;}
 div.input-block {
 }
