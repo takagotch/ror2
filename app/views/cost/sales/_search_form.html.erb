@@ -9,6 +9,10 @@
 	  (1900..Time.current.year).to_a.reverse)
 	m << p.drop_down_list_block(:birth_month, 'birthday:', 1..12)
 	m << p.drop_down_list_block(:birth_mday, 'birthday:', 1..31)
+	m.div do
+		m << p.drop down list block(:gender, 'gender:',
+		  [['male', 'male'],['female', 'female']])
+	end
 	m.br
 	m.div do
 	m << p.drop_down_list_block(:address_type, 'address search:',
@@ -19,6 +23,7 @@
 	m << p.text_field_block(:city, 'city:')
 	m.br
 	m << p.text_field_block(:phone_number, 'phone number:')
+	m << p.text_field_block(:last_four_difits, 'phonenumber 4', size: 4)
 	m << f.submit('search')
   end%>
 <% end %>
