@@ -9,6 +9,14 @@
 	m << p.text_field_block(:city, 'city', size: 16)
 	m << p.text_field_block(:address1, 'address1', size: 40)
 	m << p.text_field_block(:address2, 'address2', size: 40)
+	m.div(class: 'input-block') do
+		m << p.decorated_label(:personal_phones, 'phones')
+		m.ol do
+		  p.object.phones.each with index do |phone, index|
+		    m << render('phone_fields', f: ff, phone: phone, index: index)
+		  end
+		end
+	end
 	end %>
 <% end %>
 
