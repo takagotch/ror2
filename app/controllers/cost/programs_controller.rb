@@ -2,7 +2,7 @@ class Cost::ProgramsController < Cost::Base
 	def index
 		#scope, app/models/program.rb
 		#@programs = Program.order(application_start_time: :desc)
-		#	includes(:registrant).page(params[:page])
+		#	.includes(:registrant).page(params[:page])
 		@programs = Program.listing.page(params[:page])
 	end
 

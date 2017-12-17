@@ -1,4 +1,3 @@
-
 class AllowedSource < ActiveRecord::Base
 	attr_accessor :last_octet, :destroy
 
@@ -47,22 +46,22 @@ def ip_address=(ip_address)
 end
 
 class << self
-	def include?(namespace, ip_address)
-		!Rails.application.config.ror2[:restrict_ip_address]||where(namespace: namespace).where(option_for(ip+address)).exists?
-		#		return true if !Rails.application.config.ror2[:restrict_ip_address]
-		private
-		def options_for(ip_address)
+  def include?(namespace, ip_address)
+    !Rails.application.config.ror2[:restrict_ip_address]||
+      where(namespace: namespace).where(options_for(ip_address)).exists?
+#    return true if !Rails.application.config.ror2[:restrict_ip_address]
 
-		octets = ip_address.split('.')
-		condition = %Q{
-		octet1 => AND octet2 = ? AND octet3 = ?
-		AND((octet4 = > AND wildcard = ?) OR wildcard = ?)
-		.gsub(/\s+/,'').strip}
-		#opts = [condition, *octets, false, true ]
-		#where(namespace: namespace).where(opts).exists?
-		[condition, *octets, false, true]	
-	end
-end
-
+    private
+    def options_for(ip_address)
+      octets = ip_address.split('.')
+      condition = %Q{
+        octet1 =? AND octet2 = ? AND octet3 = ?
+        AND((octet4 = ? AND wildcard = ?) OR wildcard = ?)
+    .gsub(/\s+/,'').strip}
+    #opts = [condition, *octets, false, true ]
+    #where(namespace: namespace).where(opts).exists?
+    [condition, *octets, false, true]	
+    end
+  end
 end
 
