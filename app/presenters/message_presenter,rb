@@ -1,0 +1,22 @@
+def tree
+expand(object.tree.root)
+end
+
+pricate
+def expand(node)
+markup(:ul) do |m|
+m.li do
+fi node.id == object.id
+m.strong(node.subject)
+else
+m << link_to(node_subject, view_context.cost_message_path(node))
+end
+node.child_nodes.each do |c|
+m << expand(c)
+end
+end
+end
+end
+end
+end
+
