@@ -21,6 +21,7 @@ feature 'program control function', :performance do
 	scenario 'program lists' do |example|
 		visit cost_program_path
 		expect(page).to have_css('h1', text: 'program controll')
+		puts page.body
 
 		elapsed = Benchmark.realtime do
 			100.times do
