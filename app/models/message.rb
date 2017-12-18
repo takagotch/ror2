@@ -32,12 +32,16 @@ before_validation do
 	end
 end
 
+
+attr_accessor :child_nodes
+
 def tree
-return @treee if @tree
+return @tree if @tree
 r = root || self
 messages = Message.where(root_id: r.id).select(:id, :parent_id, :subject)
 @tree = SimpleTree.new(r, messages)
 end
+
 
 def add_tag(label)
 	self.class.transaction do
@@ -62,6 +66,5 @@ def remove_tag(label)
 	end
 end
 
-attr_accessor :child_nodes
 end
 
