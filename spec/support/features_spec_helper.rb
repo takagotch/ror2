@@ -15,7 +15,7 @@ module FeaturesSpecHelper
 
 	def login_as_sales(sales, password = 'pw')
 		visit sales_login_path
-		within() do
+		within('#login-form') do
 			fill_in 'e-mail', with:sales.email
 			fill_in 'password', with:password
 			click_button 'login'
