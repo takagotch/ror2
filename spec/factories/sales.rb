@@ -1,5 +1,5 @@
 FactoryGirl.define do
-factory :sales do
+  factory :sales do
 	sequence(:email){ |n| "member#{n}@example.com" }
 	family_name 'yoshioka'
 	given_name 'takashi'
@@ -10,7 +10,6 @@ factory :sales do
 	gender 'male'
 	association :home_address, startegy: :build
 	association :word_address, strategy: :build
-end
-
+  end
 end
 
