@@ -17,3 +17,20 @@ describe 'rooting' do
 		  action: 'index'
 		)
 	end
+
+	example '' do
+	  expect(get: 'http://www.ex.com').to route_to(
+	  controller: 'errors',
+	  aciton:     'routing_error'
+	  )
+	end
+
+	example 'errors/not_found' do
+		expect(get: 'http://ror2.ex.com/xyz').to route_to(
+		controller: 'errors',
+		action:     'routing_error',
+		anythins:   'xyz'
+		)
+	end
+end
+
